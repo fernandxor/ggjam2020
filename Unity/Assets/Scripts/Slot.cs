@@ -7,9 +7,10 @@ public class Slot : MonoBehaviour
 
     public System.Action<Pickable, Slot> callBack;
 
-    public void Plug()
+    public void Plug(Pickable picked)
     {
-        callBack?.Invoke(null, this);
+        Debug.Log("Entro en Plug");
+        callBack?.Invoke(picked, this);
     }
 
     public void Unplug()

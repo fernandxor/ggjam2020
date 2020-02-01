@@ -7,18 +7,21 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float movSpeed = 2f;
     [SerializeField] float playerHeight = 2f;
-    [SerializeField] float health = 100f;
-    [SerializeField] float sunFactor = 10f;
+    [SerializeField] float health = 10000f;
+    [SerializeField] float sunFactor = 1f;
     [SerializeField] Transform hands;
     [SerializeField] Car car;
-    bool isAlive = true;
+
     Camera cam;
 
+    bool isNearCar = false;
+    bool isAlive = true;
     bool canMount = true;
     bool isDriving = false;
 
+    // Item en la mano
     Pickable picked;
-
+    // Item en el suelo
     Pickable pickable;
 
 
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
     private void DamagePlayer()
     {
         health -= Time.deltaTime * sunFactor;
-        Debug.Log("Salud: " + health);
+        //Debug.Log("Salud: " + health);
         if (health <= 0f)
         {
             isAlive = false;
@@ -92,7 +95,31 @@ public class Player : MonoBehaviour
 
     private void ProcessAction()
     {
-        
+
+
+        if (isNearCar && Input.GetMouseButtonDown(0)) 
+        {
+            Debug.Log("Clico");
+
+            RaycastHit2D hit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            hit = Physics2D.Raycast(ray.origin, Vector3.forward);
+
+            if (hit && hit.collider.CompareTag("Slot"))
+            {
+                Debug.Log("Toco Slot");
+
+                Slot slot = hit.collider.GetComponent<Slot>();
+
+                if (slot != null) 
+                {
+                    slot.Plug(picked);
+                }
+
+                // Do something with the object that was hit by the raycast.
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
 
@@ -147,9 +174,12 @@ public class Player : MonoBehaviour
             Rb.velocity = car.Rb.velocity;
             transform.eulerAngles = Vector3.zero;
             Rb.MoveRotation(0);
+            CameraFollow.GetInstance().ZoomIn(transform);
         }
-        
+
     }
+
+
 
     private void ProcessMove()
     {
@@ -161,20 +191,26 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
 
+        if (collider.CompareTag("Zoom"))
+        {
+            isNearCar = true;
+            CameraFollow.GetInstance().ZoomIn(collider.transform);
+        }
+
         if (collider.CompareTag("Car"))
         {
             canMount = true;           
             Debug.Log("Coche");
-            CameraFollow.GetInstance().ZoomIn(collider.transform);
             
             return;
         }
 
         var p = collider.GetComponentInParent<Pickable>();
 
-        Debug.Log(p);
 
         if (p!= null) {
+            Debug.Log(p);
+
             pickable = p;
         }
     }
@@ -182,12 +218,16 @@ public class Player : MonoBehaviour
     void OnTriggerExit2D(Collider2D collider)
     {
 
+        if (collider.CompareTag("Zoom"))
+        {
+            isNearCar = false;
+            CameraFollow.GetInstance().ZoomOut(transform);
+        }
+
         if (collider.CompareTag("Car"))
         {
             canMount = false;
-
             Debug.Log("Coche");
-            CameraFollow.GetInstance().ZoomOut(transform);
             return;
         }
 
