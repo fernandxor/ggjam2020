@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float Health { get => health; private set => health = value; }
+
     private void Start()
     {
         cam = Camera.main;
@@ -79,9 +81,9 @@ public class Player : MonoBehaviour
     
     private void DamagePlayer()
     {
-        health -= Time.deltaTime * sunFactor;
+        Health -= Time.deltaTime * sunFactor;
         //Debug.Log("Salud: " + health);
-        if (health <= 0f)
+        if (Health <= 0f)
         {
             isAlive = false;
         }

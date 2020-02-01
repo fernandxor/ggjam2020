@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Pluggable.cs" />
     <Compile Include="Assets\Scripts\SailForce.cs" />
     <Compile Include="Assets\Scripts\Slot.cs" />
+    <Compile Include="Assets\Scripts\WaterBar.cs" />
     <Compile Include="Assets\Scripts\WaveSpawner.cs" />
     <Compile Include="Assets\Scripts\Wheel.cs" />
     <Reference Include="Unity.Timeline.Editor">
