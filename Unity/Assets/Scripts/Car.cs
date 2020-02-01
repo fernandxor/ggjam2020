@@ -5,9 +5,24 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
 
+    [SerializeField] Slot rearWheelSlot;
+    [SerializeField]Slot frontWheelSlot;
+    [SerializeField] Slot engineSlot;
+    [SerializeField] Slot sailSlot;
+    [SerializeField] Slot plowSlot;
     [SerializeField] Transform seat;
 
     Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rearWheelSlot.callBack = OnSlotPlugged;
+        frontWheelSlot.callBack = OnSlotPlugged;
+        engineSlot.callBack = OnSlotPlugged;
+        sailSlot.callBack = OnSlotPlugged;
+        plowSlot.callBack = OnSlotPlugged;
+
+    }
 
     public Rigidbody2D Rb
     {
@@ -31,5 +46,14 @@ public class Car : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnSlotPlugged(Pickable pickable, Slot slot)
+    {
+        if (pickable is Wheel)
+            Debug.Log("Pongo una rueda");
+        else Debug.Log("Pongo otra cosa");
+        //if (pickable is Sail)
+
     }
 }

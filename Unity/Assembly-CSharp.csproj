@@ -66,7 +66,9 @@
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\Pickable.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Pluggable.cs" />
     <Compile Include="Assets\Scripts\SailForce.cs" />
+    <Compile Include="Assets\Scripts\Slot.cs" />
     <Compile Include="Assets\Scripts\WaveSpawner.cs" />
     <Compile Include="Assets\Scripts\Wheel.cs" />
     <Reference Include="Unity.Timeline.Editor">
@@ -75,8 +77,14 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Path.Editor">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -90,23 +98,29 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Runtime">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
@@ -114,20 +128,8 @@
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Users/Fernando/Documents/UnityProjects/GGJam2020/ggjam2020/Unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

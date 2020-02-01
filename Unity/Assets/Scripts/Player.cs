@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] CameraFollow camera;
     [SerializeField] float movSpeed = 2f;
     [SerializeField] float playerHeight = 2f;
+    [SerializeField] float health = 100f;
+    [SerializeField] float sunFactor = 10f;
     [SerializeField] Transform hands;
     [SerializeField] Car car;
+    bool isAlive = true;
+    Camera cam;
 
     bool canMount = true;
     bool isDriving = false;
@@ -31,21 +36,33 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        cam = Camera.main;
+    }
+
     void FixedUpdate()
     {
-        if (!isDriving)
+        if (isAlive)
         {
-            ProcessMove();
-            ProcessAction();
-            ProcessMount();
 
+            DamagePlayer();
+            if (!isDriving)
+            {
+                ProcessMove();
+                ProcessAction();
+                ProcessMount();
+
+            }
+            else
+            {
+                ProcessDriving();
+                ProcessUnmount();
+                ProcessRepair();
+            }
         }
-        else {
-            ProcessDriving();
-            ProcessUnmount();
-        }
-        
-        
+        else Debug.Log("Game Over!");
+       
     }
 
     private void ProcessDriving()
@@ -53,9 +70,25 @@ public class Player : MonoBehaviour
 
     }
 
+    private void ProcessRepair()
+    {
+
+    }
+    
+    private void DamagePlayer()
+    {
+        health -= Time.deltaTime * sunFactor;
+        Debug.Log("Salud: " + health);
+        if (health <= 0f)
+        {
+            isAlive = false;
+        }
+    }
+    
     private void Update()
     {
         inputX = Input.GetAxis("Horizontal");
+      
     }
 
     private void ProcessAction()
@@ -131,9 +164,10 @@ public class Player : MonoBehaviour
 
         if (collider.CompareTag("Car"))
         {
-            canMount = true;
-
+            canMount = true;           
             Debug.Log("Coche");
+            CameraFollow.GetInstance().ZoomIn(collider.transform);
+            
             return;
         }
 
@@ -154,6 +188,7 @@ public class Player : MonoBehaviour
             canMount = false;
 
             Debug.Log("Coche");
+            CameraFollow.GetInstance().ZoomOut(transform);
             return;
         }
 

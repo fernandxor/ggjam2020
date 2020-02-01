@@ -4,7 +4,7 @@ public class Pickable : MonoBehaviour
 {
     Rigidbody2D rb;
 
-    Rigidbody2D Rb
+    public Rigidbody2D Rb
     {
         get
         {
@@ -13,6 +13,7 @@ public class Pickable : MonoBehaviour
             return rb;
         }
     }
+    
 
     protected bool isPicked;
 
@@ -32,5 +33,4 @@ public class Pickable : MonoBehaviour
         Rb.isKinematic = false;
         transform.SetParent(null);
     }
-
 }
