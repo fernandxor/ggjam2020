@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float movSpeed = 2f;
+    [SerializeField] float movSpeed = 1f;
     [SerializeField] float playerHeight = 2f;
     [SerializeField] float health = 10000f;
     [SerializeField] float sunFactor = 1f;
@@ -37,8 +37,6 @@ public class Player : MonoBehaviour
             return rb;
         }
     }
-
-    public float Health { get => health; private set => health = value; }
 
     private void Start()
     {
@@ -81,9 +79,9 @@ public class Player : MonoBehaviour
     
     private void DamagePlayer()
     {
-        Health -= Time.deltaTime * sunFactor;
+        health -= Time.deltaTime * sunFactor;
         //Debug.Log("Salud: " + health);
-        if (Health <= 0f)
+        if (health <= 0f)
         {
             isAlive = false;
         }
@@ -98,19 +96,20 @@ public class Player : MonoBehaviour
     private void ProcessAction()
     {
 
-
+        // Interaccion Hombre Maquina
         if (isNearCar && Input.GetMouseButtonDown(0)) 
         {
             Debug.Log("Clico");
 
+            int layer_mask = LayerMask.GetMask("Slot");
+
             RaycastHit2D hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            hit = Physics2D.Raycast(ray.origin, Vector3.forward);
+            hit = Physics2D.Raycast(ray.origin, Vector3.forward, 1f, layer_mask);
 
-            Debug.Log("Clico en " + hit.collider.gameObject.name);
-
-            if (hit && hit.collider.CompareTag("Slot"))
+            if (hit != false)
             {
+
                 Debug.Log("Toco Slot");
 
                 Slot slot = hit.collider.GetComponent<Slot>();

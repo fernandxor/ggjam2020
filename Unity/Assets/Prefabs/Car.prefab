@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218447636}
   - component: {fileID: 218447637}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TriggerZoom
   m_TagString: Zoom
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1559191664975478899}
   m_Layer: 11
   m_Name: Slot Engine
-  m_TagString: Untagged
+  m_TagString: Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461442069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -0.21, z: 0}
+  m_LocalPosition: {x: -0.01, y: 0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5037107736651470850}
@@ -284,7 +284,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02212967, y: 0.22129679}
+  m_Offset: {x: 0.022129655, y: 0.51855135}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -295,7 +295,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75657356, y: 1.4425936}
+  m_Size: {x: 0.75657356, y: 2.0371027}
   m_EdgeRadius: 0
 --- !u!1 &794602298
 GameObject:
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 3998769387189173712}
   m_Layer: 11
   m_Name: Slot Front Wheel
-  m_TagString: Untagged
+  m_TagString: Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,7 +531,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022129685, y: 0}
+  m_Offset: {x: -0.022129685, y: 0.04839039}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -542,7 +542,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7565735, y: 1}
+  m_Size: {x: 0.7565735, y: 1.0967808}
   m_EdgeRadius: 0
 --- !u!1 &1216846315
 GameObject:
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 7604402387210601171}
   m_Layer: 11
   m_Name: Slot Rear Wheel
-  m_TagString: Untagged
+  m_TagString: Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -817,7 +817,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06822634, y: 0}
+  m_Offset: {x: 0.15118107, y: 0.055303097}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -828,7 +828,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6588681, y: 1}
+  m_Size: {x: 0.82477754, y: 1.1106062}
   m_EdgeRadius: 0
 --- !u!1 &5037107736651470878
 GameObject:
@@ -1034,9 +1034,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26353450353bb344b88a9a9b94f6cd4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rearWheelSlot: {fileID: 0}
-  frontWheelSlot: {fileID: 0}
-  engineSlot: {fileID: 0}
-  sailSlot: {fileID: 0}
-  plowSlot: {fileID: 0}
+  rearWheelSlot: {fileID: 5666121136615438358}
+  frontWheelSlot: {fileID: 2697810849725826056}
+  engineSlot: {fileID: 5133838798398657750}
+  sailSlot: {fileID: 8763853707901032380}
+  plowSlot: {fileID: 979375384000612601}
   seat: {fileID: 257775020}

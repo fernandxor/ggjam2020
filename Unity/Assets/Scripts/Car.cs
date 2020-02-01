@@ -51,10 +51,15 @@ public class Car : MonoBehaviour
     void OnSlotPlugged(Pickable pickable, Slot slot)
     {
         Debug.Log("Entro en OnSlotPlugged");
-        if (pickable is Wheel) {
-            Debug.Log("Pongo una rueda");
+        if (pickable is Wheel && ReferenceEquals(slot, rearWheelSlot)) {
+            Debug.Log("Pongo rueda trasera");
+
+        } else if (true) 
+        {
 
         }
+        //else if (pickable is ) { }
+
         // conectar al wheel collider
         else Debug.Log("Pongo otra cosa");
         //if (pickable is Sail)
