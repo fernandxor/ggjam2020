@@ -8,30 +8,51 @@ public class Player : MonoBehaviour
     [SerializeField] float movSpeed = 2f;
     [SerializeField] float playerHeight = 2f;
 
+    Rigidbody2D rb;
+    float inputX;
+
     // Start is called before the first frame update
     void Start()
     {
-     
+        rb = GetComponent<Rigidbody2D>();
     }
 
+    Rigidbody2D Rb
+    {
+        get
+        {
+            if (rb == null)
+                rb = GetComponent<Rigidbody2D>();
+            return rb;
+        }
+    }
+
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ProcessMove();
         ProcessAction();
     }
 
+    private void Update()
+    {
+        inputX = Input.GetAxis("Horizontal");
+    }
+
     private void ProcessAction()
     {
-       
+
+
+
     }
 
     private void ProcessMove()
     {
-        var movement = Input.GetAxis("Horizontal");
-        Vector2 normalFloor = Raycast(transform.position, Vector2.down, transform.sc, int layerMask = DefaultRaycastLayers, float minDepth = -Mathf.Infinity, float maxDepth = Mathf.Infinity);
-        Vector2 newPos = new Vector2(transform.position.x + movement * movSpeed,transform.position.y);
+        
 
+        Vector2 newPos = new Vector2(transform.position.x + inputX * Time.deltaTime * movSpeed, transform.position.y);
+        Rb.MovePosition(newPos);
     }
 
 
