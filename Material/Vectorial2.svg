@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="269.34172"
-     inkscape:cy="871.59547"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="1164.432"
+     inkscape:cy="652.18565"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -58,15 +58,62 @@
      id="layer1"
      transform="translate(0,-11.249955)">
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.65159142;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#b3b3b3;fill-opacity:1;stroke:none;stroke-width:1.65159142;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect873"
        width="64.832108"
        height="7.5975127"
-       x="19.654757"
-       y="37.330311"
+       x="-92.788528"
+       y="107.60589"
        ry="3.4188778"
        inkscape:export-filename="C:\Users\Fernando\Documents\UnityProjects\GGJam2020\ggjam2020\Unity\Assets\Textures\Plank.png"
        inkscape:export-xdpi="12.54"
+       inkscape:export-ydpi="12.54"
+       transform="rotate(-90)" />
+    <rect
+       style="opacity:1;fill:#502d16;fill-opacity:1;stroke:none;stroke-width:2.46499991;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect875"
+       width="547.36798"
+       height="87.12986"
+       x="-13.363476"
+       y="230.18257"
+       ry="3.4188664" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 40.624969,231.25165 -15.501634,24.05425 22.45064,13.36348 -10.156241,11.22531"
+       id="path877"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#784421;stroke:#502d16;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 41.577381,180.96126 c 0.755952,5.10268 8.882438,8.12649 8.882438,8.12649 l 6.236608,-2.45684 c 0,0 6.236607,4.91369 7.559524,-1.51191 1.322916,-6.42559 4.157739,-8.31547 0.377976,-9.07143 -3.779761,-0.75595 -5.291667,-2.07887 -8.126487,-2.07887 -2.834822,0 -3.96875,-1.88988 -6.047621,-3.21279 -2.078868,-1.32292 -6.992559,1.5119 -6.992559,2.26785 0,0.75596 -1.889879,7.9375 -1.889879,7.9375 z"
+       id="path879"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccscscsc"
+       inkscape:export-xdpi="12.54"
        inkscape:export-ydpi="12.54" />
+    <rect
+       style="opacity:1;fill:#b3b3b3;fill-opacity:1;stroke:#502d16;stroke-width:2.46499991;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect881"
+       width="32.883926"
+       height="14.363094"
+       x="94.872025"
+       y="81.553528"
+       ry="3.4188664" />
+    <circle
+       style="opacity:1;fill:#b3b3b3;fill-opacity:1;stroke:#502d16;stroke-width:3.68394852;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path883"
+       cx="251.63425"
+       cy="151.73897"
+       r="20.371183"
+       inkscape:export-filename="C:\Users\Fernando\Documents\UnityProjects\GGJam2020\ggjam2020\Unity\Assets\Textures\Wheel.png"
+       inkscape:export-xdpi="36.59"
+       inkscape:export-ydpi="36.59" />
+    <path
+       style="opacity:1;fill:#b3b3b3;fill-opacity:1;stroke:#502d16;stroke-width:9.316535;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 764.47461 96.111328 C 757.31599 96.111328 751.55273 101.87458 751.55273 109.0332 L 751.55273 297.3418 C 751.55273 304.50042 757.31599 310.26367 764.47461 310.26367 L 839.03125 310.26367 A 108.49064 108.49064 0 0 1 838.52734 300.66797 A 108.49064 108.49064 0 0 1 947.01758 192.17578 A 108.49064 108.49064 0 0 1 1055.5078 300.66797 A 108.49064 108.49064 0 0 1 1055.0293 310.26367 L 1319.0312 310.26367 A 108.49064 108.49064 0 0 1 1318.5273 300.66797 A 108.49064 108.49064 0 0 1 1427.0176 192.17578 A 108.49064 108.49064 0 0 1 1535.5078 300.66797 A 108.49064 108.49064 0 0 1 1535.0273 310.26367 L 1600.291 310.26367 C 1607.4496 310.26367 1613.2129 304.50042 1613.2129 297.3418 L 1613.2129 109.0332 C 1613.2129 101.87458 1607.4496 96.111328 1600.291 96.111328 L 764.47461 96.111328 z "
+       transform="matrix(0.26458333,0,0,0.26458333,0,11.249955)"
+       id="rect885"
+       inkscape:export-filename="C:\Users\Fernando\Documents\UnityProjects\GGJam2020\ggjam2020\Unity\Assets\Textures\Frame.png"
+       inkscape:export-xdpi="36.59"
+       inkscape:export-ydpi="36.59" />
   </g>
 </svg>
