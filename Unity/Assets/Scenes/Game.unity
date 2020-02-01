@@ -255,6 +255,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175567732, guid: 06b979d65bf4f8648b8aee08f30bda07, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 218447635, guid: 06b979d65bf4f8648b8aee08f30bda07, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 304031759, guid: 06b979d65bf4f8648b8aee08f30bda07, type: 3}
+      propertyPath: m_TagString
+      value: Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 888774969, guid: 06b979d65bf4f8648b8aee08f30bda07, type: 3}
+      propertyPath: m_TagString
+      value: Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801329402, guid: 06b979d65bf4f8648b8aee08f30bda07, type: 3}
+      propertyPath: m_TagString
+      value: Slot
+      objectReference: {fileID: 0}
     - target: {fileID: 5037107736651470850, guid: 06b979d65bf4f8648b8aee08f30bda07,
         type: 3}
       propertyPath: m_LocalPosition.x

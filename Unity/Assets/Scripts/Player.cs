@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float Health { get => health; private set => health = value; }
+
     private void Start()
     {
         cam = Camera.main;
@@ -79,9 +81,9 @@ public class Player : MonoBehaviour
     
     private void DamagePlayer()
     {
-        health -= Time.deltaTime * sunFactor;
+        Health -= Time.deltaTime * sunFactor;
         //Debug.Log("Salud: " + health);
-        if (health <= 0f)
+        if (Health <= 0f)
         {
             isAlive = false;
         }
@@ -104,6 +106,8 @@ public class Player : MonoBehaviour
             RaycastHit2D hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, Vector3.forward);
+
+            Debug.Log("Clico en " + hit.collider.gameObject.name);
 
             if (hit && hit.collider.CompareTag("Slot"))
             {
