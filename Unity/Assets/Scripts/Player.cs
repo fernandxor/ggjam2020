@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] CameraFollow camera;
     [SerializeField] float movSpeed = 2f;
     [SerializeField] float playerHeight = 2f;
     [SerializeField] float health = 100f;
@@ -132,7 +131,7 @@ public class Player : MonoBehaviour
                 Rb.velocity = Vector2.zero;
                 transform.SetParent(car.Seat);
                 transform.localPosition = Vector2.zero;
-
+                CameraFollow.GetInstance().ZoomOut();
             }
         }
     }
