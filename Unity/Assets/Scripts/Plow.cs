@@ -2,16 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plow : Pickable, Pluggable
+public class Plow : Pickable
 {
-    public void Plug()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Unplug()
-    {
-        throw new System.NotImplementedException();
-    }
+   
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wheel : Pickable, Pluggable
+public class Wheel : Pickable
 {
     public override void Pick(Transform grabPos)
     {
@@ -10,13 +10,5 @@ public class Wheel : Pickable, Pluggable
         Debug.Log("[Wheel] He sido recogido");
     }
 
-    public void Plug()
-    {
-        Debug.Log("[Wheel] He sido pluggeado");
-    }
-
-    public void Unplug()
-    {
-        
-    }
+   
 }

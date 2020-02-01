@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slot : Pluggable
+public class Slot : MonoBehaviour, Pluggable
 {
 
     public System.Action<Pickable, Slot> callBack;
@@ -15,7 +15,8 @@ public class Slot : Pluggable
 
     public void Unplug()
     {
-
+        Debug.Log("Entro en unplug");
+        //callBack?.Invoke(picked, this);
     }
     
 }

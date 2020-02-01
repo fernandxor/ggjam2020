@@ -52,6 +52,8 @@ public class Car : MonoBehaviour
     {
         Debug.Log("Entro en OnSlotPlugged");
         if (pickable is Wheel && ReferenceEquals(slot, rearWheelSlot)) {
+
+            GetComponentInChildren<GameObject>();
             Debug.Log("Pongo rueda trasera");
             
         }

@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1670899740}
+  nearZoom: 2
+  farZoom: 5
 --- !u!1 &172591645
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +257,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 794602298, guid: 06b979d65bf4f8648b8aee08f30bda07, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216846315, guid: 06b979d65bf4f8648b8aee08f30bda07, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5037107736651470850, guid: 06b979d65bf4f8648b8aee08f30bda07,
         type: 3}
       propertyPath: m_LocalPosition.x
