@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface Pluggable
 {
-    void Plug();
+    void Plug(Pickable picked);
 
     void Unplug();
 }

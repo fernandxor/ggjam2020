@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slot : MonoBehaviour
+public class Slot : Pluggable
 {
 
     public System.Action<Pickable, Slot> callBack;

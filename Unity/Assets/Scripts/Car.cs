@@ -53,16 +53,28 @@ public class Car : MonoBehaviour
         Debug.Log("Entro en OnSlotPlugged");
         if (pickable is Wheel && ReferenceEquals(slot, rearWheelSlot)) {
             Debug.Log("Pongo rueda trasera");
-
-        } else if (true) 
-        {
-
+            
         }
-        //else if (pickable is ) { }
-
-        // conectar al wheel collider
-        else Debug.Log("Pongo otra cosa");
-        //if (pickable is Sail)
-
+        if (pickable is Wheel && ReferenceEquals(slot, frontWheelSlot))
+        {
+            Debug.Log("Pongo rueda delantera");
+        }
+        else if (pickable is Engine && ReferenceEquals(slot, engineSlot))
+        {
+            Debug.Log("Pongo motor");
+        }
+        else if (pickable is Sail && ReferenceEquals(slot, sailSlot))
+        {
+            Debug.Log("Pongo vela");
+        }
+        else if (pickable is Plow && ReferenceEquals(slot, plowSlot))
+        {
+            Debug.Log("Pongo quitanieves");
+        }
+        else if (pickable is Gas && ReferenceEquals(slot, engineSlot))
+        {
+            Debug.Log("Recargo deposito");
+        }
+        
     }
 }

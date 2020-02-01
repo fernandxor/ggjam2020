@@ -12,7 +12,7 @@ public class Wheel : Pickable, Pluggable
 
     public void Plug()
     {
-        
+        Debug.Log("[Wheel] He sido pluggeado");
     }
 
     public void Unplug()

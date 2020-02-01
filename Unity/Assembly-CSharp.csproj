@@ -63,13 +63,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Bird.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Car.cs" />
+    <Compile Include="Assets\Scripts\Engine.cs" />
+    <Compile Include="Assets\Scripts\Gas.cs" />
     <Compile Include="Assets\Scripts\Pickable.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Plow.cs" />
     <Compile Include="Assets\Scripts\Pluggable.cs" />
+    <Compile Include="Assets\Scripts\Sail.cs" />
     <Compile Include="Assets\Scripts\SailForce.cs" />
     <Compile Include="Assets\Scripts\Slot.cs" />
+    <Compile Include="Assets\Scripts\Snake.cs" />
     <Compile Include="Assets\Scripts\WaterBar.cs" />
     <Compile Include="Assets\Scripts\WaveSpawner.cs" />
     <Compile Include="Assets\Scripts\Wheel.cs" />
