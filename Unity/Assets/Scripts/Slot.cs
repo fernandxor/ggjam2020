@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Slot : MonoBehaviour, Pluggable
 {
+
+    public enum SlotType { Wheel, Sail, Engine, Plow }
+
+    [SerializeField] SlotType slotType;
+
     GameObject child;
 
     public GameObject Child { get => child; set => child = value; }
@@ -26,6 +33,9 @@ public class Slot : MonoBehaviour, Pluggable
 
     public void Plug(Pickable picked)
     {
+
+       // if (picked.Compare)
+
         Debug.Log("Entro en Plug");
         callBack?.Invoke(picked, this);
     }
