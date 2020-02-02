@@ -66,7 +66,7 @@ public class Car : MonoBehaviour
         float deltaX = 10f * Input.GetAxis("Horizontal");
         Rb.AddTorque(deltaX);
         float deltaY = 10f * Input.GetAxis("Vertical");
-        //wheelJoints[1].motor.motorSpeed(deltaY;
+       // wheelJoints[1].motor.motorSpeed(deltaY);
     }
 
     private void PruebasCoche()

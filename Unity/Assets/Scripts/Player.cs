@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     bool isNearCar = false;
     bool isAlive = true;
-    bool canMount = true;
+    bool canMount = false;
     bool isDriving = false;
     bool carrying = false;
 
