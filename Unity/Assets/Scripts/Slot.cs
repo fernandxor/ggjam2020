@@ -34,7 +34,7 @@ public class Slot : MonoBehaviour, Pluggable
     public void Plug(Pickable picked)
     {
 
-        if (picked.Compare)
+       // if (picked.Compare)
 
         Debug.Log("Entro en Plug");
         callBack?.Invoke(picked, this);
