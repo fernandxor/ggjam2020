@@ -677,6 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointerTexture: {fileID: 2800000, guid: ce8083c50f8b4c64da7e5db6cd479ce0, type: 3}
+  plugTexture: {fileID: 2800000, guid: f0045eaf52c1bd84b96442cc07a41968, type: 3}
 --- !u!1 &1892688520
 GameObject:
   m_ObjectHideFlags: 0

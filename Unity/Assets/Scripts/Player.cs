@@ -112,10 +112,8 @@ public class Player : MonoBehaviour
     {
 
         // Interaccion Hombre Maquina
-        if (isNearCar && Input.GetMouseButtonDown(0)) 
+        if (isNearCar) 
         {
-            Debug.Log("Clico");
-
             int layer_mask = LayerMask.GetMask("Slot");
 
             RaycastHit2D hit;
@@ -125,18 +123,28 @@ public class Player : MonoBehaviour
             if (hit != false)
             {
 
+                CarInteractionHUD.SetPlugIcon(true);
+
                 Debug.Log("Toco Slot");
 
                 var slot = hit.collider.GetComponent<Slot>();
 
-                if (slot != null) 
+
+                if (Input.GetMouseButtonDown(0))
                 {
+                    Debug.Log("Clico");
+                    if (slot != null)
+                    {
 
-                    slot.Plug(picked);
+                        slot.Plug(picked);
+                    }
+
                 }
-
                 // Do something with the object that was hit by the raycast.
             }
+            else
+                CarInteractionHUD.SetPlugIcon(false);
+
         }
 
         if (Input.GetKeyDown(KeyCode.E))
