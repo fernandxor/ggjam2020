@@ -223,6 +223,7 @@ public class Player : MonoBehaviour
 
             isNearCar = true;
             CameraFollow.GetInstance().ZoomIn(collider.transform);
+            CarInteractionHUD.SetVisible(true);
         }
 
         if (collider.CompareTag("Car"))
@@ -250,6 +251,7 @@ public class Player : MonoBehaviour
         {
             isNearCar = false;
             CameraFollow.GetInstance().ZoomOut(transform);
+            CarInteractionHUD.SetVisible(false);
         }
 
         if (collider.CompareTag("Car"))

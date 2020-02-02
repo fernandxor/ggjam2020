@@ -63,7 +63,7 @@ public class Car : MonoBehaviour
 
     public void ProcessDriving()
     {
-        float deltaX = 10f * Input.GetAxis("Horizontal");
+        float deltaX = 1000f * Input.GetAxis("Horizontal");
         Rb.AddTorque(deltaX);
         float deltaY = 10f * Input.GetAxis("Vertical");
        // wheelJoints[1].motor.motorSpeed(deltaY);
