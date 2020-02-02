@@ -24,10 +24,10 @@ public class Slot : MonoBehaviour, Pluggable
         if (childs > 0)
         {
             Child = transform.GetChild(0).gameObject;
-            Debug.Log(this.name + " tiene un hijo: " + Child.name);
+
         }
         else {
-            Debug.Log(this.name + " no tiene hijos.");
+
         }
     }
 
@@ -36,13 +36,13 @@ public class Slot : MonoBehaviour, Pluggable
 
        // if (picked.Compare)
 
-        Debug.Log("Entro en Plug");
+
         callBack?.Invoke(picked, this);
     }
 
     public void Unplug()
     {
-        Debug.Log("Entro en unplug");
+
         //callBack?.Invoke(picked, this);
     }
     

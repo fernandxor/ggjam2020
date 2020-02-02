@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     bool isAlive = true;
     bool canMount = false;
     bool isDriving = false;
-    bool carrying = false;
 
     // Item en la mano
     Pickable picked;
@@ -48,6 +47,15 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!isDriving)
+            ProcessMove();
+        else
+            car.ProcessDriving();
+
+    }
+
+    private void Update()
+    {
         //PruebasJugador();
         if (isAlive)
         {
@@ -55,20 +63,20 @@ public class Player : MonoBehaviour
             DamagePlayer();
             if (!isDriving)
             {
-                ProcessMove();
+                
                 ProcessAction();
                 ProcessMount();
+              //  ProcessIcons();
 
             }
             else
             {
-                car.ProcessDriving();
                 ProcessUnmount();
                 ProcessRepair();
             }
         }
         else Debug.Log("Game Over!");
-       
+
     }
 
     private void PruebasJugador()
@@ -76,7 +84,6 @@ public class Player : MonoBehaviour
         // Interaccion Hombre Maquina
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Prueba 1");
         }
     }
 
@@ -95,24 +102,16 @@ public class Player : MonoBehaviour
             isAlive = false;
         }
     }
-    
-    private void Update()
-    {
-        //inputX = Input.GetAxis("Horizontal");
-      
-    }
 
     public void Soltar() 
     {
-        carrying = false;
         picked = null;
     }
 
-    private void ProcessAction()
+    private void ProcessIcons()
     {
-
         // Interaccion Hombre Maquina
-        if (isNearCar) 
+        if (isNearCar)
         {
             int layer_mask = LayerMask.GetMask("Slot");
 
@@ -125,14 +124,14 @@ public class Player : MonoBehaviour
 
                 CarInteractionHUD.SetPlugIcon(true);
 
-                Debug.Log("Toco Slot");
+
 
                 var slot = hit.collider.GetComponent<Slot>();
 
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log("Clico");
+
                     if (slot != null)
                     {
 
@@ -146,31 +145,67 @@ public class Player : MonoBehaviour
                 CarInteractionHUD.SetPlugIcon(false);
 
         }
+    }
 
+    private void ProcessAction()
+    {
+
+        //CAR
+        // Interaccion Hombre Maquina
+        if (isNearCar)
+        {
+            int layer_mask = LayerMask.GetMask("Slot");
+
+            RaycastHit2D hit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            hit = Physics2D.Raycast(ray.origin, Vector3.forward, 1f, layer_mask);
+
+            if (hit != false)
+            {
+
+                CarInteractionHUD.SetPlugIcon(true);
+
+                var slot = hit.collider.GetComponent<Slot>();
+
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    if (slot != null)
+                    {
+                        slot.Plug(picked);
+                    }
+
+                }
+                // Do something with the object that was hit by the raycast.
+            }
+            else
+                CarInteractionHUD.SetPlugIcon(false);
+        }
+                
+        //ITEMS
         if (Input.GetKeyDown(KeyCode.E))
         {
 
-            if (carrying && picked != null)
+            Debug.Log("Picked: " + picked + " /  Pickable: " + pickable);
+
+            if (picked != null)
             {
                 picked.Drop();
                 picked = null;
-                carrying = false;
             }
             else
             {
 
                 if (pickable != null)
                 {
+                    
                     pickable.Pick(hands);
                     picked = pickable;
-                    carrying = true;
                 }
-
 
             }
         }
-
-        
 
     }
 
@@ -180,7 +215,8 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isDriving)
             {
-                Debug.Log("Me subo al coche");
+                CarInteractionHUD.SetVisible(false);
+
                 isDriving = true;
 
                 Rb.isKinematic = true;
@@ -196,13 +232,14 @@ public class Player : MonoBehaviour
     {  
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Me bajo del coche");
+            CarInteractionHUD.SetVisible(true);
             isDriving = false;
             transform.SetParent(null);
             Rb.isKinematic = false;
             Rb.velocity = car.Rb.velocity;
             transform.eulerAngles = Vector3.zero;
             Rb.MoveRotation(0);
+            car.ProcessDriving(false);
             CameraFollow.GetInstance().ZoomIn(transform);
         }
 
@@ -222,12 +259,13 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("Llega " + collider.gameObject.name);
+
+        //if(collider.gameObject.name.Equals("Goal"))
+            
 
 
         if (collider.CompareTag("Zoom"))
         {
-            Debug.Log("Zoom");
 
             isNearCar = true;
             CameraFollow.GetInstance().ZoomIn(collider.transform);
@@ -237,7 +275,7 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("Car"))
         {
             canMount = true;           
-            Debug.Log("Cocheee");
+
             
             return;
         }
@@ -246,8 +284,6 @@ public class Player : MonoBehaviour
 
 
         if (p!= null) {
-            Debug.Log("Pickeable: " + p);
-
             pickable = p;
         }
     }
@@ -265,7 +301,6 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("Car"))
         {
             canMount = false;
-            Debug.Log("Coche");
             return;
         }
 

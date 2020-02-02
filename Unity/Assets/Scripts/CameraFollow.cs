@@ -32,6 +32,10 @@ public class CameraFollow : MonoBehaviour
         Vector3 v = Vector2.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
         v.z = -10;
 
+
+        v.x = Mathf.Max(v.x, -1f);
+        v.y = 0;
+
         transform.position = v;
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize, Time.deltaTime * 3);

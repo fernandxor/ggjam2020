@@ -20,16 +20,17 @@ public class Pickable : MonoBehaviour
 
     public virtual void Pick(Transform grabPos) {
         isPicked = true;
-        Rb.isKinematic = true;
-        Rb.MoveRotation(grabPos.rotation);
+        Rb.simulated = false;
+        Rb.velocity = Vector2.zero;
+        Rb.angularVelocity = 0;
         transform.SetParent(grabPos);
         transform.localPosition = Vector2.zero;
     }
 
     public virtual void Drop() {
         isPicked = false;
-        Rb.isKinematic = false;
         transform.SetParent(null);
+        Rb.simulated = true;
     }
 
 }

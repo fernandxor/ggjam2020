@@ -13,6 +13,8 @@ public class Car : MonoBehaviour
     [SerializeField] Slot plowSlot;
     [SerializeField] Transform seat;
 
+    [SerializeField] GameObject sail;
+
     Rigidbody2D rb;
 
     WheelJoint2D[] wheelJoints;
@@ -47,26 +49,20 @@ public class Car : MonoBehaviour
         wheelJoints = gameObject.GetComponents<WheelJoint2D>();      
     }
 
-        
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-       // PruebasCoche();
-    }
 
     private void FixedUpdate()
     {
         
     }
 
-    public void ProcessDriving()
+    public void ProcessDriving(bool drive = true)
     {
-        float deltaX = 1000f * Input.GetAxis("Horizontal");
-        Rb.AddTorque(deltaX);
-        float deltaY = 10f * Input.GetAxis("Vertical");
-       // wheelJoints[1].motor.motorSpeed(deltaY);
+    
+        WheelJoint2D[] ms = GetComponents<WheelJoint2D>();
+        ms[0].useMotor = drive;
+        ms[1].useMotor = drive;
+
+
     }
 
     private void PruebasCoche()
@@ -91,49 +87,62 @@ public class Car : MonoBehaviour
 
     void OnSlotPlugged(Pickable pickable, Slot slot)
     {
-        Debug.Log("Entro en OnSlotPlugged");
+
+
         if (pickable is Wheel && ReferenceEquals(slot, rearWheelSlot)) {
 
             //Debugpickable.transform.parent.name;
             pickable.Drop();
-            pickable.Rb.MovePosition(slot.transform.position);
+            pickable.transform.SetParent(slot.transform);
+            pickable.transform.localPosition = Vector3.zero;
             wheelJoints[1].connectedBody = pickable.Rb;
-            
            
-            Debug.Log("Pongo rueda trasera");
+
             
         }
         else if (pickable is Wheel && ReferenceEquals(slot, frontWheelSlot))
         {
-            Debug.Log("Pongo rueda delantera");
+
             pickable.Drop();
-            pickable.Rb.MovePosition(slot.transform.position);
+            pickable.transform.SetParent(slot.transform);
+            pickable.transform.localPosition = Vector3.zero;
             wheelJoints[0].connectedBody = pickable.Rb;
 
         }
         else if (pickable is Engine && ReferenceEquals(slot, engineSlot))
         {
-            Debug.Log("Pongo motor");
-            Debug.Log("Leer aqui " + pickable.transform.parent.parent);
+
+
             pickable.transform.parent.GetComponentInParent<Player>().Soltar();
             pickable.Drop();
             pickable.Rb.isKinematic = true;
             pickable.transform.SetParent(engineSlot.transform);
             pickable.transform.localPosition = Vector2.zero;
-            //pickable.Pick(slot.transform);
 
         }
         else if (pickable is Sail && ReferenceEquals(slot, sailSlot))
         {
-            Debug.Log("Pongo vela");
+
+            pickable.transform.parent.GetComponentInParent<Player>().Soltar();
+            /*
+            pickable.Drop();
+            pickable.Rb.isKinematic = true;
+            pickable.transform.localEulerAngles = Vector3.zero;
+            pickable.transform.SetParent(sailSlot.transform);
+            pickable.transform.localPosition = Vector2.zero;
+            */
+            Destroy(pickable.gameObject);
+            sail.SetActive(true);
+
+
         }
         else if (pickable is Plow && ReferenceEquals(slot, plowSlot))
         {
-            Debug.Log("Pongo quitanieves");
+
         }
         else if (pickable is Gas && ReferenceEquals(slot, engineSlot))
         {
-            Debug.Log("Quiero recargar deposito");
+
             if (slot.transform.childCount > 0) 
             {
                 //slot.transform.GetChild(0).GetComponent<Engine>().Use();

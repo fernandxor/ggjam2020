@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 234139868677661680}
   - component: {fileID: 3348654132730318415}
   - component: {fileID: 1670899736}
+  - component: {fileID: 2230032980977950652}
+  - component: {fileID: 8860961021190944816}
   m_Layer: 9
   m_Name: PJ
   m_TagString: Untagged
@@ -128,7 +130,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_Size: {x: 0.43, y: 1.2}
   m_Direction: 0
 --- !u!50 &3348654132730318415
@@ -170,3 +172,34 @@ MonoBehaviour:
   sunFactor: 2
   hands: {fileID: 2028611160}
   car: {fileID: 0}
+--- !u!95 &2230032980977950652
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8812131514983686371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c73406e5c43b83244bea57a648a7c4cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8860961021190944816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8812131514983686371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6546e0282ce7be46a54dae454f22137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

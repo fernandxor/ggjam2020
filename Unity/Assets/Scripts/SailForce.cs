@@ -14,7 +14,6 @@ public class SailForce : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(transform.right * force, ForceMode2D.Force);
-        Debug.Log(rb.velocity);
     }
 
 }
