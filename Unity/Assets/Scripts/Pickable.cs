@@ -21,8 +21,7 @@ public class Pickable : MonoBehaviour
     public virtual void Pick(Transform grabPos) {
         isPicked = true;
         Rb.isKinematic = true;
-        //Rb.velocity = Vector2.zero;
-        //Rb.angularVelocity = 0;
+        Rb.MoveRotation(grabPos.rotation);
         transform.SetParent(grabPos);
         transform.localPosition = Vector2.zero;
     }
@@ -32,4 +31,5 @@ public class Pickable : MonoBehaviour
         Rb.isKinematic = false;
         transform.SetParent(null);
     }
+
 }

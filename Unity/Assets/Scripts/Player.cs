@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     bool isAlive = true;
     bool canMount = true;
     bool isDriving = false;
+    bool carrying = false;
 
     // Item en la mano
     Pickable picked;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        //PruebasJugador();
         if (isAlive)
         {
 
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                ProcessDriving();
+                car.ProcessDriving();
                 ProcessUnmount();
                 ProcessRepair();
             }
@@ -69,11 +71,16 @@ public class Player : MonoBehaviour
        
     }
 
-    private void ProcessDriving()
-    {  
-
+    private void PruebasJugador()
+    {
+        // Interaccion Hombre Maquina
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Prueba 1");
+        }
     }
 
+    
     private void ProcessRepair()
     {
 
@@ -91,8 +98,14 @@ public class Player : MonoBehaviour
     
     private void Update()
     {
-        inputX = Input.GetAxis("Horizontal");
+        //inputX = Input.GetAxis("Horizontal");
       
+    }
+
+    public void Soltar() 
+    {
+        carrying = false;
+        picked = null;
     }
 
     private void ProcessAction()
@@ -114,10 +127,11 @@ public class Player : MonoBehaviour
 
                 Debug.Log("Toco Slot");
 
-                Slot slot = hit.collider.GetComponent<Slot>();
+                var slot = hit.collider.GetComponent<Slot>();
 
                 if (slot != null) 
                 {
+
                     slot.Plug(picked);
                 }
 
@@ -128,10 +142,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
 
-            if (picked != null)
+            if (carrying && picked != null)
             {
                 picked.Drop();
                 picked = null;
+                carrying = false;
             }
             else
             {
@@ -140,6 +155,7 @@ public class Player : MonoBehaviour
                 {
                     pickable.Pick(hands);
                     picked = pickable;
+                    carrying = true;
                 }
 
 
@@ -188,16 +204,23 @@ public class Player : MonoBehaviour
 
     private void ProcessMove()
     {
-        
 
-        Vector2 newPos = new Vector2(transform.position.x + inputX * Time.deltaTime * movSpeed, transform.position.y - 4f * Time.deltaTime);
-        Rb.MovePosition(newPos);
+        float controlThrow = Input.GetAxis("Horizontal"); // value is betweeen -1 to +1
+        Vector2 playerVelocity = new Vector2(controlThrow * movSpeed, Rb.velocity.y);
+        Rb.velocity = playerVelocity;
+
+        //Vector2 newPos = new Vector2(transform.position.x + inputX * Time.deltaTime * movSpeed, transform.position.y - 4f * Time.deltaTime);
+        //Rb.MovePosition(newPos);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
+        Debug.Log("Llega " + collider.gameObject.name);
+
 
         if (collider.CompareTag("Zoom"))
         {
+            Debug.Log("Zoom");
+
             isNearCar = true;
             CameraFollow.GetInstance().ZoomIn(collider.transform);
         }
@@ -205,16 +228,16 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("Car"))
         {
             canMount = true;           
-            Debug.Log("Coche");
+            Debug.Log("Cocheee");
             
             return;
         }
-
+        
         var p = collider.GetComponentInParent<Pickable>();
 
 
         if (p!= null) {
-            Debug.Log(p);
+            Debug.Log("Pickeable: " + p);
 
             pickable = p;
         }
