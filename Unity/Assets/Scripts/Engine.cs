@@ -8,6 +8,8 @@ public class Engine : Pickable
 
     public float Capacity { get => capacity; set => capacity = value; }
 
+    public override bool IsPlaced { set { base.IsPlaced = value;GetComponent<SpriteRenderer>().sortingOrder = -10; } }
+
     public override void Pick(Transform grabPos)
     {
         base.Pick(grabPos);

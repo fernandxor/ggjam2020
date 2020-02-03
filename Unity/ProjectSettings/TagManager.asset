@@ -7,6 +7,7 @@ TagManager:
   - Car
   - Zoom
   - Slot
+  - Cactus
   layers:
   - Default
   - TransparentFX

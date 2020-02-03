@@ -7,10 +7,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float movSpeed = 1f;
     [SerializeField] float playerHeight = 2f;
-    [SerializeField] float health = 10000f;
     [SerializeField] float sunFactor = 1f;
     [SerializeField] Transform hands;
     [SerializeField] Car car;
+    float health = 100f;
 
     Camera cam;
 
@@ -19,11 +19,14 @@ public class Player : MonoBehaviour
     bool canMount = false;
     bool isDriving = false;
 
+    SpriteRenderer sr;
+
     // Item en la mano
     Pickable picked;
     // Item en el suelo
     Pickable pickable;
 
+    bool canControl;
 
     Rigidbody2D rb;
     float inputX;
@@ -40,18 +43,25 @@ public class Player : MonoBehaviour
 
     public float Health { get => health; private set => health = value; }
 
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
+        canControl = true;
         cam = Camera.main;
     }
 
     void FixedUpdate()
     {
-        if(!isDriving)
-            ProcessMove();
-        else
-            car.ProcessDriving();
-
+        if (canControl)
+        {
+            if (!isDriving)
+                ProcessMove();
+        }
     }
 
     private void Update()
@@ -72,34 +82,26 @@ public class Player : MonoBehaviour
             else
             {
                 ProcessUnmount();
-                ProcessRepair();
             }
         }
         else Debug.Log("Game Over!");
 
     }
 
-    private void PruebasJugador()
-    {
-        // Interaccion Hombre Maquina
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-        }
-    }
-
-    
-    private void ProcessRepair()
-    {
-
-    }
-    
+  
     private void DamagePlayer()
     {
-        Health -= Time.deltaTime * sunFactor;
+        Health -= Time.deltaTime * (picked==null?sunFactor:sunFactor*2f);
         //Debug.Log("Salud: " + health);
         if (Health <= 0f)
         {
+            Health = 0;
+
+            if (isDriving)
+                ProcessUnmount();
+
             isAlive = false;
+            GameLoop.GameOver();
         }
     }
 
@@ -107,46 +109,7 @@ public class Player : MonoBehaviour
     {
         picked = null;
     }
-
-    private void ProcessIcons()
-    {
-        // Interaccion Hombre Maquina
-        if (isNearCar)
-        {
-            int layer_mask = LayerMask.GetMask("Slot");
-
-            RaycastHit2D hit;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            hit = Physics2D.Raycast(ray.origin, Vector3.forward, 1f, layer_mask);
-
-            if (hit != false)
-            {
-
-                CarInteractionHUD.SetPlugIcon(true);
-
-
-
-                var slot = hit.collider.GetComponent<Slot>();
-
-
-                if (Input.GetMouseButtonDown(0))
-                {
-
-                    if (slot != null)
-                    {
-
-                        slot.Plug(picked);
-                    }
-
-                }
-                // Do something with the object that was hit by the raycast.
-            }
-            else
-                CarInteractionHUD.SetPlugIcon(false);
-
-        }
-    }
-
+    
     private void ProcessAction()
     {
 
@@ -162,11 +125,14 @@ public class Player : MonoBehaviour
 
             if (hit != false)
             {
-
-                CarInteractionHUD.SetPlugIcon(true);
+                
 
                 var slot = hit.collider.GetComponent<Slot>();
 
+                if(!slot.IsPlugged)
+                    CarInteractionHUD.SetPlugIcon(true);
+                else
+                    CarInteractionHUD.SetPlugIcon(false);
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -197,9 +163,8 @@ public class Player : MonoBehaviour
             else
             {
 
-                if (pickable != null)
+                if (pickable != null && !pickable.IsPlaced)
                 {
-                    
                     pickable.Pick(hands);
                     picked = pickable;
                 }
@@ -216,10 +181,11 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !isDriving)
             {
                 CarInteractionHUD.SetVisible(false);
-
+                sr.flipX = false;
+                sr.sortingOrder = -10;
                 isDriving = true;
-
-                Rb.isKinematic = true;
+                car.ProcessDriving();
+                Rb.simulated = false;
                 Rb.velocity = Vector2.zero;
                 transform.SetParent(car.Seat);
                 transform.localPosition = Vector2.zero;
@@ -234,12 +200,13 @@ public class Player : MonoBehaviour
         {
             CarInteractionHUD.SetVisible(true);
             isDriving = false;
+            sr.sortingOrder = 10;
+            car.ProcessDriving(false);
             transform.SetParent(null);
-            Rb.isKinematic = false;
+            Rb.simulated = true;
             Rb.velocity = car.Rb.velocity;
             transform.eulerAngles = Vector3.zero;
             Rb.MoveRotation(0);
-            car.ProcessDriving(false);
             CameraFollow.GetInstance().ZoomIn(transform);
         }
 
@@ -251,7 +218,7 @@ public class Player : MonoBehaviour
     {
 
         float controlThrow = Input.GetAxis("Horizontal"); // value is betweeen -1 to +1
-        Vector2 playerVelocity = new Vector2(controlThrow * movSpeed, Rb.velocity.y);
+        Vector2 playerVelocity = new Vector2(controlThrow * movSpeed * (picked==null? 1f : 0.7f), Rb.velocity.y);
         Rb.velocity = playerVelocity;
 
         //Vector2 newPos = new Vector2(transform.position.x + inputX * Time.deltaTime * movSpeed, transform.position.y - 4f * Time.deltaTime);
@@ -260,8 +227,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
 
-        //if(collider.gameObject.name.Equals("Goal"))
-            
+        if (collider.gameObject.name.Equals("GameLoop"))
+        {
+            GameLoop.YouWin();
+            canControl = false;
+        }
 
 
         if (collider.CompareTag("Zoom"))

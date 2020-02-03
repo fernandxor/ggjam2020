@@ -15,6 +15,7 @@ public class Pickable : MonoBehaviour
     }
     
     protected bool isPicked;
+    public virtual bool IsPlaced { get; set; }
 
     public bool IsPicked { get => isPicked; }
 

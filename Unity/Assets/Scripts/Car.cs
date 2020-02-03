@@ -12,12 +12,14 @@ public class Car : MonoBehaviour
     [SerializeField] Slot sailSlot;
     [SerializeField] Slot plowSlot;
     [SerializeField] Transform seat;
-
     [SerializeField] GameObject sail;
+    [SerializeField] ParticleSystem smokePS;
 
     Rigidbody2D rb;
 
     WheelJoint2D[] wheelJoints;
+
+    bool hasMotor;
 
     private void Awake()
     {
@@ -27,9 +29,9 @@ public class Car : MonoBehaviour
         sailSlot.callBack = OnSlotPlugged;
         plowSlot.callBack = OnSlotPlugged;
 
+        WheelJoint2D[] wheelJoints = GetComponents<WheelJoint2D>();
+        
     }
-
-
 
     public Rigidbody2D Rb
     {
@@ -48,94 +50,74 @@ public class Car : MonoBehaviour
     {
         wheelJoints = gameObject.GetComponents<WheelJoint2D>();      
     }
-
-
-    private void FixedUpdate()
-    {
-        
-    }
-
+    
     public void ProcessDriving(bool drive = true)
     {
-    
-        WheelJoint2D[] ms = GetComponents<WheelJoint2D>();
-        ms[0].useMotor = drive;
-        ms[1].useMotor = drive;
+        if (!hasMotor)
+            return;
 
+        if(drive)
+            smokePS.Play();
+        else
+            smokePS.Stop();
 
-    }
+        if (wheelJoints[0].attachedRigidbody != null)
+            wheelJoints[0].useMotor = drive;
 
-    private void PruebasCoche()
-    {
-        WheelJoint2D[] wcs = gameObject.GetComponents<WheelJoint2D>();
-        var wc1 = wcs[0];
-        var wc2 = wcs[1];
-        // Interaccion Hombre Maquina
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Rigidbody2D rb = wc1.connectedBody;
-            wc1.connectedBody = null;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Rigidbody2D rb = wc2.connectedBody;
-            wc2.connectedBody = null;
-        }
-        
+        if (wheelJoints[1].attachedRigidbody != null)
+            wheelJoints[1].useMotor = drive;
 
     }
 
     void OnSlotPlugged(Pickable pickable, Slot slot)
     {
 
+        if (pickable is Wheel && ReferenceEquals(slot, rearWheelSlot) && !rearWheelSlot.IsPlugged) {
 
-        if (pickable is Wheel && ReferenceEquals(slot, rearWheelSlot)) {
 
-            //Debugpickable.transform.parent.name;
-            pickable.Drop();
+            pickable.transform.parent.GetComponentInParent<Player>().Soltar();
+            pickable.IsPlaced = true;
             pickable.transform.SetParent(slot.transform);
             pickable.transform.localPosition = Vector3.zero;
+            pickable.Rb.simulated = true;
             wheelJoints[1].connectedBody = pickable.Rb;
-           
+            slot.IsPlugged = true;
 
-            
         }
-        else if (pickable is Wheel && ReferenceEquals(slot, frontWheelSlot))
+        else if (pickable is Wheel && ReferenceEquals(slot, frontWheelSlot) && !frontWheelSlot.IsPlugged)
         {
 
-            pickable.Drop();
+            pickable.transform.parent.GetComponentInParent<Player>().Soltar();
+            pickable.IsPlaced = true;
             pickable.transform.SetParent(slot.transform);
             pickable.transform.localPosition = Vector3.zero;
+            pickable.Rb.simulated = true;
             wheelJoints[0].connectedBody = pickable.Rb;
+            slot.IsPlugged = true;
 
         }
         else if (pickable is Engine && ReferenceEquals(slot, engineSlot))
         {
 
-
+            hasMotor = true;
             pickable.transform.parent.GetComponentInParent<Player>().Soltar();
-            pickable.Drop();
-            pickable.Rb.isKinematic = true;
+            pickable.Rb.simulated = false;
             pickable.transform.SetParent(engineSlot.transform);
             pickable.transform.localPosition = Vector2.zero;
+            slot.IsPlugged = true;
+            pickable.IsPlaced = true;
 
         }
         else if (pickable is Sail && ReferenceEquals(slot, sailSlot))
         {
 
             pickable.transform.parent.GetComponentInParent<Player>().Soltar();
-            /*
-            pickable.Drop();
-            pickable.Rb.isKinematic = true;
-            pickable.transform.localEulerAngles = Vector3.zero;
-            pickable.transform.SetParent(sailSlot.transform);
-            pickable.transform.localPosition = Vector2.zero;
-            */
             Destroy(pickable.gameObject);
             sail.SetActive(true);
-
+            slot.IsPlugged = true;
 
         }
+        /*
         else if (pickable is Plow && ReferenceEquals(slot, plowSlot))
         {
 
@@ -143,11 +125,8 @@ public class Car : MonoBehaviour
         else if (pickable is Gas && ReferenceEquals(slot, engineSlot))
         {
 
-            if (slot.transform.childCount > 0) 
-            {
-                //slot.transform.GetChild(0).GetComponent<Engine>().Use();
-            } 
         }
+        */
         
     }
 }

@@ -27,7 +27,6 @@ public class WaterBar : MonoBehaviour
             colorValue = Mathf.Repeat(colorValue + Time.deltaTime * 4, 2f);
             colorInterpolator = Mathf.PingPong(colorValue, 1f);
             image.color = Color.Lerp(Color.black, Color.red, colorInterpolator);
-            Debug.Log("Color: " + colorValue + "," + colorInterpolator);
         }
 
     }

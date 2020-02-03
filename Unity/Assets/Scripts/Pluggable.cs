@@ -6,5 +6,4 @@ public interface Pluggable
 {
     void Plug(Pickable picked);
 
-    void Unplug();
 }

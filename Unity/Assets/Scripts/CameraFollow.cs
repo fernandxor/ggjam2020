@@ -34,7 +34,7 @@ public class CameraFollow : MonoBehaviour
 
 
         v.x = Mathf.Max(v.x, -1f);
-        v.y = 0;
+        v.y = Mathf.Max(v.y, -2f);
 
         transform.position = v;
 

@@ -13,7 +13,7 @@ public class SailForce : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(transform.right * force, ForceMode2D.Force);
+        rb.AddForce(Vector2.right * force, ForceMode2D.Force);
     }
 
 }
